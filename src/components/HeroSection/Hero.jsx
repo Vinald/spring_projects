@@ -1,6 +1,6 @@
 import Intro from "./Intro.jsx";
 import ProfileSummary from "./ProfileSummary.jsx";
-import ContactInfo from "./ContactInfo.jsx";
+import Contact from "../Contact/Contact.jsx";
 
 const Hero = () => (
     <section id="intro" className="container text-light py-5">
@@ -9,7 +9,7 @@ const Hero = () => (
         {/* Profile Summary section */}
         <ProfileSummary />
         {/* Contact Information section */}
-        <ContactInfo />
+        <Contact />
     </section>
 );
 
