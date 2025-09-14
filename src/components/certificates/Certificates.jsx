@@ -1,4 +1,6 @@
 import CertificateCard from "./CertificateCard";
+import UIPECertificate from "../../assets/images/UIPECertificate.png";
+
 
 const certificates = [
     {
@@ -39,14 +41,14 @@ const certificates = [
     {
         title: "UIPE Member",
         issuer: "Issued by Uganda Institution of Professional Engineers UIPE - August 2023",
-        link: "assets/images/UIPECertificate.png",
+        link: {UIPECertificate},
     },
 ];
 
 const Certificates = () => (
-    <section id="certificates" className="container py-5 bg-dark text-light">
+    <section id="certificates" className="container rounded-3 py-4 px-2 bg-dark text-light mb-3">
         <div className="container">
-            <h2 className="text-center mb-5 text-uppercase fw-bold">Certificates</h2>
+            <h2 className="text-center my-4 text-uppercase fw-bold">Certificates</h2>
             <div className="row g-4">
                 {certificates.map((certificate, idx) => (
                     <CertificateCard key={idx} certificate={certificate} />

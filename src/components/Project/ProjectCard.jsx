@@ -5,7 +5,7 @@ const ProjectCard = ({ project }) => (
         <div className="card bg-dark text-light h-100">
             <img
                 src={project.image}
-                className="card-img-top img-fluid rounded-3"
+                className="bg-white card-img-top img-fluid rounded-3"
                 alt={project.title}
                 style={{ height: "200px", objectFit: "cover" }}
             />

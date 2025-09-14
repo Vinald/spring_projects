@@ -1,5 +1,3 @@
-import React from "react";
-
 const CertificateCard = ({ certificate }) => (
     <div className="col-xxl-3 col-lg-4 col-md-6">
         <div className="card h-100 bg-secondary text-light border-0 shadow-sm">
