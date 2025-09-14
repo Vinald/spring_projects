@@ -3,7 +3,7 @@ import ProfileSummary from "./ProfileSummary.jsx";
 
 const Hero = () => (
     <section id="intro" className="container text-light py-5">
-        {/* Intro section */}
+        {/* HeroSection section */}
         <Intro />
         {/* Profile Summary section */}
         <ProfileSummary />

@@ -1,7 +1,7 @@
 import './App.css'
 import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Hero from './components/Intro/Hero.jsx'
+import Hero from './components/HeroSection/Hero.jsx'
 import Footer from "./components/Footer.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Experience from "./components/Experience/Experience.jsx";
