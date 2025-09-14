@@ -74,7 +74,7 @@ const experiences = [
 ];
 
 const Experience = () => (
-    <section id="experience" className="rounded-3 container py-5 bg-dark text-light">
+    <section id="experience" className="rounded-3 container p-4 bg-dark text-light">
         <div className="container">
             <h2 className="text-center mb-5 text-uppercase fw-bold">Experience</h2>
             <div>
