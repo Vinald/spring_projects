@@ -19,7 +19,7 @@ const educationList = [
 ];
 
 const Education = () => (
-    <section id="education" className="mb-4 text-light">
+    <section id="education" className="container mb-4 text-light">
         <h2 className="text-center mb-4 text-uppercase fw-bold">Education</h2>
         <div className="timeline">
             {educationList.map((edu, idx) => (

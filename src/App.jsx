@@ -1,8 +1,9 @@
 import './App.css'
+import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Hero from './components/Hero.jsx'
+import Hero from './components/Intro/Hero.jsx'
 import Footer from "./components/Footer.jsx";
-import Navbar from "./components/Navbar.jsx";
+import Navbar from "./components/Navbar/Navbar.jsx";
 import Experience from "./components/Experience/Experience.jsx";
 import Education from "./components/Education/Education.jsx";
 import Skills from "./components/Skills.jsx";

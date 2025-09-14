@@ -1,36 +1,17 @@
-const Hero = () => (
-    <section id="intro" className="bg-dark text-light py-5">
-        <div className="container text-center py-2">
-            <h4 className="fw-light mb-3 text-uppercase text-secondary tracking-wider">
-                Hello, I'm
-            </h4>
-            <h1 className="display-3 fw-bold mb-3 text-gradient-primary">
-                <span className="d-block">Okiror Samuel Vinald</span>
-            </h1>
-            <div className="mb-4">
-                <h3 className="d-inline-block position-relative fw-bold mb-3 title-underline">
-                    <span className="text-light">Computer Engineer</span>
-                </h3>
-            </div>
-            <div className="d-flex flex-wrap justify-content-center gap-3 mt-4">
-                <a
-                    href="assets/okiror_samuel_vinald.pdf"
-                    className="btn btn-warning btn-lg rounded-pill px-4 shadow-sm fw-bold"
-                >
-                    <i className="bi bi-download me-2"></i>Download Resume
-                </a>
-            </div>
-        </div>
-        <div className="row align-items-center justify-content-center pt-5">
-            <div className="col-lg-5 text-center mb-4 mb-md-0">
+import profileImage from "../../assets/images/profile_new_1.jpg";
+
+const ProfileSummary = () => {
+    return (
+        <div className=" row align-items-center justify-content-center pt-5">
+            <div className="col-lg-4 text-center mb-4 mb-md-0">
                 <img
-                    src="assets/images/profile_new_1.jpg"
+                    src={profileImage}
                     alt="Vinald"
                     className="img-fluid rounded-5 shadow-lg"
                     style={{ maxWidth: "300px", border: "5px solid black" }}
                 />
             </div>
-            <div className="col-lg-7 text-light">
+            <div className="col-lg-8 text-light">
                 <p className="lead my-4 text-light">
                     I'm a Results-driven <strong>Software Developer</strong> with a Bachelor of
                     Science in Computer Engineering, specializing in full-stack web and mobile
@@ -58,7 +39,7 @@ const Hero = () => (
                 </h5>
             </div>
         </div>
-    </section>
-);
+    );
+};
 
-export default Hero;
+export default ProfileSummary;

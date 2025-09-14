@@ -44,7 +44,7 @@ const certificates = [
 ];
 
 const Certificates = () => (
-    <section id="certificates" className="py-5 bg-dark text-light">
+    <section id="certificates" className="container py-5 bg-dark text-light">
         <div className="container">
             <h2 className="text-center mb-5 text-uppercase fw-bold">Certificates</h2>
             <div className="row g-4">

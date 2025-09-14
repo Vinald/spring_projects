@@ -39,7 +39,7 @@ const projects = [
 ];
 
 const Projects = () => (
-    <section id="projects" className="mb-4">
+    <section id="projects" className="container mb-4">
         <h2 className="text-center mb-4 text-uppercase fw-bold">Projects</h2>
         <div className="row row-cols-1 row-cols-md-2 g-4">
             {projects.map((project, idx) => (

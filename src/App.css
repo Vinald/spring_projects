@@ -1,6 +1,6 @@
 /* General Styling */
 html {
-    scroll-padding-top: 70px; /* Adjust this value to match your navbar height */
+    scroll-padding-top: 70px; 
 }
 
 
@@ -19,12 +19,6 @@ h4,
 p {
     color: white;
 }
-
-
-/* Header */
-
-
-/* Intro */
 
 /* Sections */
 section {
