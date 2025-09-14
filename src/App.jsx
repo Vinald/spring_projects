@@ -6,7 +6,7 @@ import Footer from "./components/Footer.jsx";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Experience from "./components/Experience/Experience.jsx";
 import Education from "./components/Education/Education.jsx";
-import Skills from "./components/Skills.jsx";
+import Skills from "./components/Skills/Skills.jsx";
 import Projects from "./components/Project/Projects.jsx";
 import Certificates from "./components/certificates/Certificates.jsx";
 
