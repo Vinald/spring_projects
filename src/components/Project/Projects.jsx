@@ -2,6 +2,8 @@ import ProjectCard from "./ProjectCard";
 import irrigationPic from "../../assets/images/irrigation.jpg";
 import wheelchairPic from '../../assets/images/wheelchair.jpg'
 import vxnaidPic from '../../assets/images/ic_vxnaid_logo.png'
+import AgriwaveProject from "../../pages/AgriwaveProject/Agriwave";
+ import VoiceControlProject from "../../pages/LugandaVoiceControlledSystem/VoiceControl";
 
 const projects = [
     {
@@ -9,16 +11,16 @@ const projects = [
         title: "Smart Irrigation System",
         description:
             "Developed a smart irrigation system integrating IoT and machine learning for real-time water management, cost reduction, and crop yield improvement. This innovative solution promotes sustainable farming practices.",
-        link: "projects/irrigation-project.html",
-        disabled: true,
+        link: "/agriwave", // Use a string path for routing
+        disabled: false,
     },
     {
         image: wheelchairPic,
         title: "Voice-Controlled Wheelchair System",
         description:
             "Engineered a Luganda Voice-Controlled Wheelchair System to enhance mobility for Luganda-speaking individuals. The system integrates Luganda voice commands with speech intent recognition technology for wheelchair control.",
-        link: "projects/wheelchair-project.html",
-        disabled: true,
+        link: "/luganda-voice-control", // Use a string path for routing
+        disabled: false,
     },
     {
         image: vxnaidPic,
