@@ -14,12 +14,13 @@ const ProjectCard = ({ project }) => (
                 <p className="card-text">{project.description}</p>
             </div>
             <div className="card-footer">
-                <a
-                    href={project.link}
-                    className={project.disabled ? "btn btn-info disabled" : "btn btn-info"}
-                >
-                    Read More
-                </a>
+                {project.disabled ? (
+                    <span className="btn btn-info disabled">Read More</span>
+                ) : (
+                    <Link to={project.link} className="btn btn-info">
+                        Read More
+                    </Link>
+                )}
             </div>
         </div>
     </div>

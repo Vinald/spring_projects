@@ -1,8 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
 export default defineConfig({
-    plugins: [react()],
-    base: "/okiror_samuel_vinald/", // Set base for GitHub Pages
-});
+  plugins: [react()],
+  base: process.env.NODE_ENV === 'production' ? '/okiror_samuel_vinald/' : '/',
+})
