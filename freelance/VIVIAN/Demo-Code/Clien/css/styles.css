@@ -1,0 +1,218 @@
+:root {
+    --bg: #fff;
+    --card: #fff;
+    --primary: #e93636;
+    --accent: #13294b;
+    --muted: #6b7280;
+    --success: #2ead68;
+}
+* {
+    box-sizing: border-box;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+}
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background: var(--bg);
+    color: var(--accent);
+}
+.app {
+    max-width: 420px;
+    margin: 10px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    background: var(--primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+}
+.title {
+    font-weight: 700;
+}
+.subtitle {
+    font-size: 12px;
+    color: var(--muted);
+}
+.input {
+    padding: 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+.main {
+    padding: 12px;
+}
+.view {
+    padding: 12px;
+}
+.screen {
+    padding: 12px;
+}
+.card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 12px;
+    margin: 12px;
+}
+.center {
+    text-align: center;
+}
+.small {
+    font-size: 13px;
+}
+.muted {
+    color: var(--muted);
+}
+.circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 20px;
+}
+.primary {
+    background: var(--primary);
+    color: #fff;
+}
+.danger {
+    background: linear-gradient(90deg, #ff7a00, #e93636);
+    color: #fff;
+}
+.big {
+    padding: 12px 16px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+}
+.outline {
+    padding: 10px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: transparent;
+}
+.form-row {
+    margin-top: 8px;
+}
+.label {
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.seg {
+    display: flex;
+    gap: 8px;
+}
+.seg-btn {
+    padding: 8px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: transparent;
+}
+.map-placeholder {
+    height: 220px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #f5f7fb, #ffffff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+}
+.bottom {
+    display: flex;
+    gap: 6px;
+    padding: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.04);
+    justify-content: space-between;
+}
+.nav-item {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 999px;
+    background: transparent;
+    border: none;
+}
+.hidden {
+    display: none;
+}
+.vehicle-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+.vehicle-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    background: #fff;
+}
+.vehicle-info {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #ffd6b3, #ffb07a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #fff;
+}
+.pill {
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.04);
+    font-weight: 700;
+}
+.status-green {
+    border: 3px solid #2ead68;
+}
+.status-blue {
+    border: 3px solid #2c6fd8;
+}
+.status-red {
+    border: 3px solid #e93636;
+}
+@media (max-width: 420px) {
+    .circle {
+        width: 100px;
+        height: 100px;
+    }
+    .app {
+        margin: 0;
+        border-radius: 0;
+    }
+}
