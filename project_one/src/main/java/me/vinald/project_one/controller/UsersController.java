@@ -1,9 +1,9 @@
 package me.vinald.project_one.controller;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import me.vinald.project_one.model.Users;
 import me.vinald.project_one.service.UsersService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
