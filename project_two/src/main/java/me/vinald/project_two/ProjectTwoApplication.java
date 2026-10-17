@@ -1,5 +1,6 @@
 package me.vinald.project_two;
 
+import me.vinald.project_two.service.MyFirstService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,8 +10,10 @@ public class ProjectTwoApplication {
 	public static void main(String[] args) {
 		var ctx = SpringApplication.run(ProjectTwoApplication.class, args);
 		MyFirstClass myFirstClass = ctx.getBean(MyFirstClass.class);
+		MyFirstService myFirstService = ctx.getBean(MyFirstService.class);
 
 		System.out.println(myFirstClass.sayHello());
+		System.out.println(myFirstService.serviceHello());
 	}
 
 }
