@@ -1,6 +1,7 @@
 package me.vinald.project_one.config;
 
 import me.vinald.project_one.security.JwtAuthFilter;
+import me.vinald.project_one.security.OAuth2LoginSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,10 +21,13 @@ import org.springframework.security.web.context.SecurityContextHolderFilter;
 public class SecurityConfig {
 	private final UserDetailsService userDetailsService;
 	private final JwtAuthFilter jwtAuthFilter;
+	private final OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
 
-	public SecurityConfig(UserDetailsService userDetailsService, JwtAuthFilter jwtAuthFilter) {
+	public SecurityConfig(UserDetailsService userDetailsService, JwtAuthFilter jwtAuthFilter,
+						   OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler) {
 		this.userDetailsService = userDetailsService;
 		this.jwtAuthFilter = jwtAuthFilter;
+		this.oAuth2LoginSuccessHandler = oAuth2LoginSuccessHandler;
 	}
 
 	@Bean
@@ -34,13 +38,16 @@ public class SecurityConfig {
 						.requestMatchers(
 								"/register",
 								"/login",
+								"/oauth2/**",
+								"/login/oauth2/**",
 								"/swagger-ui.html",
 								"/swagger-ui/**",
 								"/v3/api-docs/**"
 						).permitAll()
 						.anyRequest().authenticated())
-				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
 				.addFilterAfter(jwtAuthFilter, SecurityContextHolderFilter.class)
+				.oauth2Login(oauth2 -> oauth2.successHandler(oAuth2LoginSuccessHandler))
 				.build();
 
 	}
