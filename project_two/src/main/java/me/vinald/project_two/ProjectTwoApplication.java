@@ -7,7 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ProjectTwoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProjectTwoApplication.class, args);
+		var ctx = SpringApplication.run(ProjectTwoApplication.class, args);
+		MyFirstClass myFirstClass = ctx.getBean(MyFirstClass.class);
+
+		System.out.println(myFirstClass.sayHello());
 	}
 
 }
