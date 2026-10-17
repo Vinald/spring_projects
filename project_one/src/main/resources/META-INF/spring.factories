@@ -1,0 +1,2 @@
+org.springframework.boot.env.EnvironmentPostProcessor=\
+me.vinald.project_one.config.DotenvEnvironmentPostProcessor

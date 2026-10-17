@@ -1,24 +1,29 @@
 package me.vinald.project_one.config;
 
+import me.vinald.project_one.security.JwtAuthFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 	private final UserDetailsService userDetailsService;
+	private final JwtAuthFilter jwtAuthFilter;
 
-	public SecurityConfig(UserDetailsService userDetailsService) {
+	public SecurityConfig(UserDetailsService userDetailsService, JwtAuthFilter jwtAuthFilter) {
 		this.userDetailsService = userDetailsService;
+		this.jwtAuthFilter = jwtAuthFilter;
 	}
 
 	@Bean
@@ -28,14 +33,14 @@ public class SecurityConfig {
 				.authorizeHttpRequests(request -> request
 						.requestMatchers(
 								"/register",
+								"/login",
 								"/swagger-ui.html",
 								"/swagger-ui/**",
 								"/v3/api-docs/**"
 						).permitAll()
 						.anyRequest().authenticated())
-				.formLogin(Customizer.withDefaults()) // form login in browser
-				.httpBasic(Customizer.withDefaults()) // http basic auth in postman
-				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
 				.build();
 
 	}
@@ -45,5 +50,10 @@ public class SecurityConfig {
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
 		provider.setPasswordEncoder(new BCryptPasswordEncoder());
 		return provider;
+	}
+
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+		return config.getAuthenticationManager();
 	}
 }
