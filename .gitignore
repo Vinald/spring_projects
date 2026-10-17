@@ -142,6 +142,7 @@ terraform.tfstate
 *.der
 .env
 .env.*
+!.env.example
 .secret
 
 # Celery beat schedule
