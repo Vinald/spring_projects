@@ -14,6 +14,8 @@ public class ProjectTwoApplication {
 
 		System.out.println(myFirstClass.sayHello());
 		System.out.println(myFirstService.serviceHello());
+		System.out.println("Java version: " + myFirstService.getJavaVersion());
+		System.out.println("OS name: " + myFirstService.getOsName());
 	}
 
 }
