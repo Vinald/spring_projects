@@ -16,6 +16,8 @@ public class ProjectTwoApplication {
 		System.out.println(myFirstService.serviceHello());
 		System.out.println("Java version: " + myFirstService.getJavaVersion());
 		System.out.println("OS name: " + myFirstService.getOsName());
+		System.out.println("Custom property: " + myFirstService.getCustomProperty());
+		System.out.println("Custom property from field: " + myFirstService.getCustomPropertyFromField());
 	}
 
 }
