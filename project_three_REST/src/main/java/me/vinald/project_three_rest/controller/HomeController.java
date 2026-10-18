@@ -1,10 +1,7 @@
 package me.vinald.project_three_rest.controller;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HomeController {
@@ -16,7 +13,7 @@ public class HomeController {
 
 	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)
-	public String create() {
-		return "Resource created successfully!";
+	public String create(@RequestBody String message) {
+		return "Resource created successfully: " + message;
 	}
 }
