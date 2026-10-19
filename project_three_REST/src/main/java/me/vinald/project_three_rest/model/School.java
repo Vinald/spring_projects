@@ -1,5 +1,6 @@
 package me.vinald.project_three_rest.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,5 +19,6 @@ public class School {
 	private String name;
 
 	@OneToMany(mappedBy = "school", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private List<Student> students;
 }

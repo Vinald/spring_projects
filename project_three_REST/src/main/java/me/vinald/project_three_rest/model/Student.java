@@ -1,5 +1,7 @@
 package me.vinald.project_three_rest.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,9 +23,11 @@ public class Student {
 	private String gender;
 
 	@OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private StudentProfile studentprofile;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "school_id", referencedColumnName = "id")
+	@JsonBackReference
 	private School school;
 }
