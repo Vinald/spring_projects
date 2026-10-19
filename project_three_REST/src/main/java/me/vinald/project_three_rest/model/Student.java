@@ -19,4 +19,11 @@ public class Student {
 	private  String email;
 	private Integer age;
 	private String gender;
+
+	@OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+	private StudentProfile studentprofile;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "school_id", referencedColumnName = "id")
+	private School school;
 }

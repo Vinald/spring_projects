@@ -22,7 +22,9 @@ public class StudentController {
 	@GetMapping("/students/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public Student getStudentById(@PathVariable Integer id){
-		return studentRepository.findById(id).orElse(null);
+
+		return studentRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Student not found with id: " + id));
 	}
 
 	@PostMapping("/students")
@@ -57,5 +59,11 @@ public class StudentController {
 			return "Student deleted successfully!";
 		}
 		return "Student not found!";
+	}
+
+	@GetMapping("/students/search")
+	@ResponseStatus(HttpStatus.OK)
+	public Iterable<Student> searchStudents(@RequestParam String firstName){
+		return studentRepository.findAllByFirstNameContainingIgnoreCase(firstName);
 	}
 }
