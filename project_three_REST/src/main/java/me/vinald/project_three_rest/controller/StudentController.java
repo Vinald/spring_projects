@@ -1,5 +1,7 @@
 package me.vinald.project_three_rest.controller;
 
+import me.vinald.project_three_rest.dto.StudentDto;
+import me.vinald.project_three_rest.model.School;
 import me.vinald.project_three_rest.model.Student;
 import me.vinald.project_three_rest.repository.StudentRepository;
 import org.springframework.http.HttpStatus;
@@ -29,8 +31,9 @@ public class StudentController {
 
 	@PostMapping("/students")
 	@ResponseStatus(HttpStatus.CREATED)
-	public String createStudent(@RequestBody Student student){
-		studentRepository.save(student);
+	public String createStudent(@RequestBody StudentDto student){
+		var newStudent = toStudent(student);
+		studentRepository.save(newStudent);
 		return "Student created successfully!" ;
 	}
 
@@ -65,5 +68,18 @@ public class StudentController {
 	@ResponseStatus(HttpStatus.OK)
 	public Iterable<Student> searchStudents(@RequestParam String firstName){
 		return studentRepository.findAllByFirstNameContainingIgnoreCase(firstName);
+	}
+
+	private Student toStudent(StudentDto studentDto) {
+		Student student = new Student();
+		student.setFirstName(studentDto.firstName());
+		student.setLastName(studentDto.lastName());
+		student.setEmail(studentDto.email());
+		student.setAge(studentDto.age());
+		student.setGender(studentDto.gender());
+		var school = new School();
+		school.setId(studentDto.schoolId());
+		student.setSchool(school);
+		return student;
 	}
 }
