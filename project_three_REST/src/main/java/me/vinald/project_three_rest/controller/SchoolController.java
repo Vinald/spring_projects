@@ -1,6 +1,6 @@
 package me.vinald.project_three_rest.controller;
 
-import me.vinald.project_three_rest.dto.SchoolDto;
+import me.vinald.project_three_rest.dto.SchoolDTO;
 import me.vinald.project_three_rest.dto.SchoolResponseDTO;
 import me.vinald.project_three_rest.model.School;
 import me.vinald.project_three_rest.repository.SchoolRepository;
@@ -19,7 +19,7 @@ public class SchoolController {
 
 	@PostMapping("/schools")
 	@ResponseStatus(HttpStatus.CREATED)
-	public SchoolResponseDTO createSchool(@RequestBody SchoolDto schoolDto) {
+	public SchoolResponseDTO createSchool(@RequestBody SchoolDTO schoolDto) {
 		School school = toSchool(schoolDto);
 		schoolRepository.save(school);
 		return toSchoolResponseDto(school);
@@ -66,7 +66,7 @@ public class SchoolController {
 		}
 	}
 
-	private School toSchool(SchoolDto schoolDto) {
+	private School toSchool(SchoolDTO schoolDto) {
 		School school = new School();
 		school.setName(schoolDto.name());
 		return school;

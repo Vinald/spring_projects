@@ -1,6 +1,6 @@
 package me.vinald.project_three_rest.dto;
 
-public record SchoolDto(
+public record SchoolDTO(
 		String name
 ) {
 }

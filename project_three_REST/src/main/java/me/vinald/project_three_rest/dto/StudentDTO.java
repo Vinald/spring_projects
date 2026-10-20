@@ -1,7 +1,7 @@
 package me.vinald.project_three_rest.dto;
 
 
-public record StudentDto(
+public record StudentDTO(
 	String firstName,
 	String lastName,
 	String email,

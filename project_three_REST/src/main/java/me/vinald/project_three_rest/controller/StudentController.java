@@ -1,22 +1,26 @@
 package me.vinald.project_three_rest.controller;
 
-import me.vinald.project_three_rest.dto.StudentDto;
+import me.vinald.project_three_rest.dto.StudentDTO;
 import me.vinald.project_three_rest.dto.StudentResponseDTO;
-import me.vinald.project_three_rest.model.School;
 import me.vinald.project_three_rest.model.Student;
 import me.vinald.project_three_rest.repository.SchoolRepository;
-import me.vinald.project_three_rest.repository.StudentRepository;
+import me.vinald.project_three_rest.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class StudentController {
-	private final StudentRepository studentRepository;
 	private final SchoolRepository schoolRepository;
-
-	public StudentController(StudentRepository studentRepository, SchoolRepository schoolRepository) {
-		this.studentRepository = studentRepository;
+	private final StudentService studentService;
+	public StudentController(StudentService studentService, SchoolRepository schoolRepository) {
 		this.schoolRepository = schoolRepository;
+		this.studentService = studentService;
+	}
+
+	@PostMapping("/students")
+	@ResponseStatus(HttpStatus.CREATED)
+	public StudentResponseDTO createStudent(@RequestBody StudentDTO student){
+		return studentService.createStudent(student);
 	}
 
 	@GetMapping("/students")
@@ -31,14 +35,6 @@ public class StudentController {
 
 		return studentRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Student not found with id: " + id));
-	}
-
-	@PostMapping("/students")
-	@ResponseStatus(HttpStatus.CREATED)
-	public StudentResponseDTO createStudent(@RequestBody StudentDto student){
-		var newStudent = toStudent(student);
-		studentRepository.save(newStudent);
-		return toStudentResponseDTO(newStudent);
 	}
 
 	@PutMapping("/students/{id}")
@@ -72,29 +68,5 @@ public class StudentController {
 	@ResponseStatus(HttpStatus.OK)
 	public Iterable<Student> searchStudents(@RequestParam String firstName){
 		return studentRepository.findAllByFirstNameContainingIgnoreCase(firstName);
-	}
-
-	private Student toStudent(StudentDto studentDto) {
-		School school = schoolRepository.findById(studentDto.schoolId())
-				.orElseThrow(() -> new IllegalArgumentException("School not found with id: " + studentDto.schoolId()));
-		Student student = new Student();
-		student.setFirstName(studentDto.firstName());
-		student.setLastName(studentDto.lastName());
-		student.setEmail(studentDto.email());
-		student.setAge(studentDto.age());
-		student.setGender(studentDto.gender());
-		student.setSchool(school);
-		return student;
-	}
-
-	private StudentResponseDTO toStudentResponseDTO(Student student) {
-		return new StudentResponseDTO(
-				student.getFirstName(),
-				student.getLastName(),
-				student.getEmail(),
-				student.getAge(),
-				student.getGender(),
-				student.getSchool().getId()
-		);
 	}
 }

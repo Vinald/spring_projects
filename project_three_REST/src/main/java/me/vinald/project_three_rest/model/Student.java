@@ -26,7 +26,7 @@ public class Student {
 	@JsonManagedReference
 	private StudentProfile studentprofile;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "school_id", referencedColumnName = "id")
 	@JsonBackReference
 	private School school;
