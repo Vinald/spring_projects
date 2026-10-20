@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import me.vinald.project_three_rest.school.School;
+import me.vinald.project_three_rest.studentprofile.StudentProfile;
 
 @Data
 @AllArgsConstructor
