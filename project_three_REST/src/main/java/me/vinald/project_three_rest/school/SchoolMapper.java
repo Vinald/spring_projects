@@ -1,8 +1,5 @@
-package me.vinald.project_three_rest.mapper;
+package me.vinald.project_three_rest.school;
 
-import me.vinald.project_three_rest.dto.SchoolDTO;
-import me.vinald.project_three_rest.dto.SchoolResponseDTO;
-import me.vinald.project_three_rest.model.School;
 import org.springframework.stereotype.Service;
 
 @Service

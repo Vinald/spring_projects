@@ -1,10 +1,6 @@
-package me.vinald.project_three_rest.service;
+package me.vinald.project_three_rest.student;
 
-import me.vinald.project_three_rest.dto.StudentDTO;
-import me.vinald.project_three_rest.dto.StudentResponseDTO;
-import me.vinald.project_three_rest.mapper.StudentMapper;
-import me.vinald.project_three_rest.repository.SchoolRepository;
-import me.vinald.project_three_rest.repository.StudentRepository;
+import me.vinald.project_three_rest.school.SchoolRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

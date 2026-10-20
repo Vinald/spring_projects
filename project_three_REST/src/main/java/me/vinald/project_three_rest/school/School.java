@@ -1,10 +1,11 @@
-package me.vinald.project_three_rest.model;
+package me.vinald.project_three_rest.school;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import me.vinald.project_three_rest.student.Student;
 
 import java.util.List;
 

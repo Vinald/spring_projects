@@ -1,9 +1,6 @@
-package me.vinald.project_three_rest.controller;
+package me.vinald.project_three_rest.student;
 
-import me.vinald.project_three_rest.dto.StudentDTO;
-import me.vinald.project_three_rest.dto.StudentResponseDTO;
-import me.vinald.project_three_rest.repository.SchoolRepository;
-import me.vinald.project_three_rest.service.StudentService;
+import me.vinald.project_three_rest.school.SchoolRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

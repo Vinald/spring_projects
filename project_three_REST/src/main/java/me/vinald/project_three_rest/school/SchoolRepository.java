@@ -1,6 +1,5 @@
-package me.vinald.project_three_rest.repository;
+package me.vinald.project_three_rest.school;
 
-import me.vinald.project_three_rest.model.School;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

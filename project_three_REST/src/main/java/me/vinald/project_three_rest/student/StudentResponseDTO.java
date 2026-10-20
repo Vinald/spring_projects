@@ -1,4 +1,4 @@
-package me.vinald.project_three_rest.dto;
+package me.vinald.project_three_rest.student;
 
 public record StudentResponseDTO(
 	String firstName,

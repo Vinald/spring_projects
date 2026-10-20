@@ -1,4 +1,4 @@
-package me.vinald.project_three_rest.controller;
+package me.vinald.project_three_rest.home;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

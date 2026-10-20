@@ -1,4 +1,4 @@
-package me.vinald.project_three_rest.model;
+package me.vinald.project_three_rest.student;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
