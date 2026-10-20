@@ -1,8 +1,10 @@
 package me.vinald.project_three_rest.controller;
 
 import me.vinald.project_three_rest.dto.StudentDto;
+import me.vinald.project_three_rest.dto.StudentResponseDTO;
 import me.vinald.project_three_rest.model.School;
 import me.vinald.project_three_rest.model.Student;
+import me.vinald.project_three_rest.repository.SchoolRepository;
 import me.vinald.project_three_rest.repository.StudentRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +12,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class StudentController {
 	private final StudentRepository studentRepository;
+	private final SchoolRepository schoolRepository;
 
-	public StudentController(StudentRepository studentRepository) {
+	public StudentController(StudentRepository studentRepository, SchoolRepository schoolRepository) {
 		this.studentRepository = studentRepository;
+		this.schoolRepository = schoolRepository;
 	}
 
 	@GetMapping("/students")
@@ -31,10 +35,10 @@ public class StudentController {
 
 	@PostMapping("/students")
 	@ResponseStatus(HttpStatus.CREATED)
-	public String createStudent(@RequestBody StudentDto student){
+	public StudentResponseDTO createStudent(@RequestBody StudentDto student){
 		var newStudent = toStudent(student);
 		studentRepository.save(newStudent);
-		return "Student created successfully!" ;
+		return toStudentResponseDTO(newStudent);
 	}
 
 	@PutMapping("/students/{id}")
@@ -71,15 +75,26 @@ public class StudentController {
 	}
 
 	private Student toStudent(StudentDto studentDto) {
+		School school = schoolRepository.findById(studentDto.schoolId())
+				.orElseThrow(() -> new IllegalArgumentException("School not found with id: " + studentDto.schoolId()));
 		Student student = new Student();
 		student.setFirstName(studentDto.firstName());
 		student.setLastName(studentDto.lastName());
 		student.setEmail(studentDto.email());
 		student.setAge(studentDto.age());
 		student.setGender(studentDto.gender());
-		var school = new School();
-		school.setId(studentDto.schoolId());
 		student.setSchool(school);
 		return student;
+	}
+
+	private StudentResponseDTO toStudentResponseDTO(Student student) {
+		return new StudentResponseDTO(
+				student.getFirstName(),
+				student.getLastName(),
+				student.getEmail(),
+				student.getAge(),
+				student.getGender(),
+				student.getSchool().getId()
+		);
 	}
 }

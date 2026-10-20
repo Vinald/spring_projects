@@ -1,9 +1,13 @@
 package me.vinald.project_three_rest.controller;
 
+import me.vinald.project_three_rest.dto.SchoolDto;
+import me.vinald.project_three_rest.dto.SchoolResponseDTO;
 import me.vinald.project_three_rest.model.School;
 import me.vinald.project_three_rest.repository.SchoolRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class SchoolController {
@@ -15,22 +19,26 @@ public class SchoolController {
 
 	@PostMapping("/schools")
 	@ResponseStatus(HttpStatus.CREATED)
-	public String createSchool(@RequestBody School school) {
+	public SchoolResponseDTO createSchool(@RequestBody SchoolDto schoolDto) {
+		School school = toSchool(schoolDto);
 		schoolRepository.save(school);
-		return "School created successfully!";
+		return toSchoolResponseDto(school);
 	}
 
 	@GetMapping("/schools")
 	@ResponseStatus(HttpStatus.OK)
-	public Iterable<School> getAllSchools() {
-		return schoolRepository.findAll();
+	public List<SchoolResponseDTO> getAllSchools() {
+		return schoolRepository.findAll()
+				.stream()
+				.map(this::toSchoolResponseDto)
+				.toList();
 	}
 
 	@GetMapping("/schools/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public School getSchoolById(@PathVariable Integer id) {
-		return schoolRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("School not found with id: " + id));
+	public SchoolResponseDTO getSchoolById(@PathVariable Integer id) {
+		return toSchoolResponseDto(schoolRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("School not found with id: " + id)));
 	}
 
 	@PutMapping("/schools/{id}")
@@ -56,5 +64,15 @@ public class SchoolController {
 		} else {
 			return "School not found!";
 		}
+	}
+
+	private School toSchool(SchoolDto schoolDto) {
+		School school = new School();
+		school.setName(schoolDto.name());
+		return school;
+	}
+
+	private SchoolResponseDTO toSchoolResponseDto(School school) {
+		return new SchoolResponseDTO(school.getName());
 	}
 }
