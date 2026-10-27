@@ -14,10 +14,8 @@ import java.util.Map;
 
 @RestController
 public class StudentController {
-	private final SchoolRepository schoolRepository;
 	private final StudentService studentService;
 	public StudentController(StudentService studentService, SchoolRepository schoolRepository) {
-		this.schoolRepository = schoolRepository;
 		this.studentService = studentService;
 	}
 
