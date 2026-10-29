@@ -1,5 +1,6 @@
 package me.vinald.project_three_rest.school;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ public class SchoolController {
 
 	@PostMapping("/schools")
 	@ResponseStatus(HttpStatus.CREATED)
-	public SchoolResponseDTO createSchool(@RequestBody SchoolDTO schoolDto) {
+	public SchoolResponseDTO createSchool(@Valid @RequestBody SchoolDTO schoolDto) {
 		return schoolService.createSchool(schoolDto);
 	}
 
@@ -33,7 +34,7 @@ public class SchoolController {
 
 	@PutMapping("/schools/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public SchoolResponseDTO updateSchool(@PathVariable Integer id, @RequestBody SchoolDTO school) {
+	public SchoolResponseDTO updateSchool(@PathVariable Integer id, @Valid @RequestBody SchoolDTO school) {
 		return schoolService.updateSchoolById(id, school);
 	}
 

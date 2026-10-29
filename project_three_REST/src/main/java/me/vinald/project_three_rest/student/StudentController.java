@@ -3,14 +3,9 @@ package me.vinald.project_three_rest.student;
 import jakarta.validation.Valid;
 import me.vinald.project_three_rest.school.SchoolRepository;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class StudentController {
@@ -39,7 +34,7 @@ public class StudentController {
 
 	@PutMapping("/students/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public StudentResponseDTO updateStudent(@PathVariable Integer id, @RequestBody StudentDTO student){
+	public StudentResponseDTO updateStudent(@PathVariable Integer id, @Valid @RequestBody StudentDTO student){
 		return studentService.updateStudent(id, student);
 	}
 
@@ -55,15 +50,4 @@ public class StudentController {
 		return studentService.searchStudents(firstName);
 	}
 
-	@ExceptionHandler(MethodArgumentNotValidException.class)
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-		Map<String, String> errors = new HashMap<>();
-		ex.getBindingResult().getAllErrors().forEach((error) -> {
-			String fieldName = ((FieldError) error).getField();
-			String errorMessage = error.getDefaultMessage();
-			errors.put(fieldName, errorMessage);
-		});
-		return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-	}
 }
