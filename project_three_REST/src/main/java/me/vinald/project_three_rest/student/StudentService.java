@@ -8,14 +8,23 @@ import java.util.List;
 @Service
 public class StudentService {
 	private final StudentRepository studentRepository;
+	private final SchoolRepository schoolRepository;
 	private final StudentMapper studentMapper;
 
-	public  StudentService(SchoolRepository schoolRepository, StudentRepository studentRepository) {
+	public  StudentService(StudentRepository studentRepository, SchoolRepository schoolRepository, StudentMapper studentMapper) {
 		this.studentRepository = studentRepository;
-		this.studentMapper = new StudentMapper(schoolRepository);
+		this.schoolRepository = schoolRepository;
+		this.studentMapper = studentMapper;
+	}
+
+	private void ensureSchoolExists(Integer schoolId) {
+		if (schoolId == null || !schoolRepository.existsById(schoolId)) {
+			throw new IllegalArgumentException("School not found with id: " + schoolId);
+		}
 	}
 
 	public StudentResponseDTO createStudent(StudentDTO studentDTO) {
+		ensureSchoolExists(studentDTO.schoolId());
 		var newStudent = studentMapper.toStudent(studentDTO);
 		studentRepository.save(newStudent);
 		return studentMapper.toStudentResponseDTO(newStudent);
@@ -37,6 +46,7 @@ public class StudentService {
 	public StudentResponseDTO updateStudent(Integer id, StudentDTO studentDTO) {
 		var existingStudent = studentRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Student not found with id: " + id));
+		ensureSchoolExists(studentDTO.schoolId());
 		var updatedStudent = studentMapper.toStudent(studentDTO);
 		existingStudent.setFirstName(updatedStudent.getFirstName());
 		existingStudent.setLastName(updatedStudent.getLastName());
