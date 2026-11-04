@@ -14,15 +14,15 @@ public class ProjectFourJpaApplication {
 		SpringApplication.run(ProjectFourJpaApplication.class, args);
 	}
 
-	@Bean
+//	@Bean
 	public CommandLineRunner commandLineRunner(
 			AuthorRepository authorRepository
 	) {
 		return args -> {
 			var author = Author.builder()
-					.firstName("John")
+					.firstName("John1")
 					.lastName("Doe")
-					.email("john.doe@example.com")
+					.email("john1.doe@example.com")
 					.age(26)
 					.createdAt(java.time.LocalDateTime.now())
 					.build();

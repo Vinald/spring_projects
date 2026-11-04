@@ -1,13 +1,12 @@
 package me.vinald.project_four_jpa.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -19,5 +18,15 @@ public class Section {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer sectionId;
 	private String name;
-	private Integer order;
+	private Integer sectionOrder;
+
+	@ManyToOne
+	@JoinTable(name = "course_section",
+			joinColumns = @JoinColumn(name = "section_id"),
+			inverseJoinColumns = @JoinColumn(name = "course_id")
+	)
+	private Course course;
+
+	@OneToMany(mappedBy = "section")
+	private List<Lecture> lectures;
 }

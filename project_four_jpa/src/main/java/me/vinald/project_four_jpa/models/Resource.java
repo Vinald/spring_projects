@@ -1,9 +1,6 @@
 package me.vinald.project_four_jpa.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,11 +11,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Builder
-public class Resources {
+public class Resource {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer resourceId;
 	private String name;
 	private String size;
 	private String url;
+
+	@OneToOne
+	@JoinColumn(name = "lecture_id")
+	private Lecture lecture;
 }
