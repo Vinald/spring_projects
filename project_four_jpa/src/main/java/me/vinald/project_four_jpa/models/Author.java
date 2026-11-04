@@ -1,32 +1,22 @@
 package me.vinald.project_four_jpa.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
+@EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class Author {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer authorId;
+@SuperBuilder
+@Entity
+public class Author extends BaseEntity {
 	private String firstName;
 	private String lastName;
 	@Column(unique = true, nullable = false)
 	private String email;
 	private Integer age;
-	@Column(updatable = false, nullable = false)
-	private LocalDateTime createdAt;
-	@Column(insertable = false)
-	private LocalDateTime lastModified;
 
 	@ManyToMany(mappedBy = "authors")
 	private List<Course> courses;

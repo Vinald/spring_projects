@@ -1,22 +1,17 @@
 package me.vinald.project_four_jpa.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Builder
-public class Course {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer courseId;
+@SuperBuilder
+public class Course extends BaseEntity {
 	private String title;
 	private String description;
 

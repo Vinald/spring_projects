@@ -19,14 +19,7 @@ public class ProjectFourJpaApplication {
 			AuthorRepository authorRepository
 	) {
 		return args -> {
-			var author = Author.builder()
-					.firstName("John1")
-					.lastName("Doe")
-					.email("john1.doe@example.com")
-					.age(26)
-					.createdAt(java.time.LocalDateTime.now())
-					.build();
-			authorRepository.save(author);
+			// code here
 		};
 	}
 
