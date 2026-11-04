@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
@@ -22,12 +23,15 @@ class StudentServiceTest {
 	private StudentRepository studentRepository;
 	@Mock
 	private SchoolRepository schoolRepository;
+	@Mock
+	private StudentMapper studentMapper;
 
 	private StudentService studentService;
 
 	@BeforeEach
 	void setUp() {
-		studentService = new StudentService(studentRepository, schoolRepository, new StudentMapper());
+		MockitoAnnotations.openMocks(this);
+		studentService = new StudentService(studentRepository, schoolRepository, studentMapper);
 	}
 
 	private static StudentDTO studentDto(Integer schoolId) {
@@ -85,7 +89,10 @@ class StudentServiceTest {
 
 	@Test
 	void getAllStudents_shouldReturnMappedStudents() {
-		when(studentRepository.findAll()).thenReturn(List.of(student("John", 1), student("Jane", 2)));
+		when(studentRepository.findAll()).thenReturn(List.of(
+				student("John", 1),
+				student("Jane", 2)
+		));
 
 		List<StudentResponseDTO> response = studentService.getAllStudents();
 
@@ -105,7 +112,8 @@ class StudentServiceTest {
 
 	@Test
 	void getStudentById_shouldReturnStudent_whenFound() {
-		when(studentRepository.findById(1)).thenReturn(Optional.of(student("John", 1)));
+		when(studentRepository.findById(1))
+				.thenReturn(Optional.of(student("John", 1)));
 
 		StudentResponseDTO response = studentService.getStudentById(1);
 
