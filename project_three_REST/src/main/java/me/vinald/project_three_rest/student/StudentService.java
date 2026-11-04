@@ -66,11 +66,8 @@ public class StudentService {
 	}
 
 	public List<StudentResponseDTO> searchStudents(String firstName) {
-		var students = studentRepository.findAllByFirstNameContainingIgnoreCase(firstName);
-		if (students.isEmpty()) {
-			throw new IllegalArgumentException("No students found with first name containing: " + firstName);
-		}
-		return students.stream()
+		return studentRepository.findAllByFirstNameContainingIgnoreCase(firstName)
+				.stream()
 				.map(studentMapper::toStudentResponseDTO)
 				.toList();
 	}

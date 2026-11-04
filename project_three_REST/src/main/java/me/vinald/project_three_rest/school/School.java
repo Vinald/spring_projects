@@ -22,4 +22,8 @@ public class School {
 	@OneToMany(mappedBy = "school", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference
 	private List<Student> students;
+
+	public School(Integer id) {
+		this.id = id;
+	}
 }

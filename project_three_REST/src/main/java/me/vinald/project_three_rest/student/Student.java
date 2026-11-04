@@ -4,12 +4,14 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import me.vinald.project_three_rest.school.School;
 import me.vinald.project_three_rest.studentprofile.StudentProfile;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity

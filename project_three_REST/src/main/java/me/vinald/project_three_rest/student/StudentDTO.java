@@ -3,6 +3,7 @@ package me.vinald.project_three_rest.student;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 
 public record StudentDTO(
@@ -16,6 +17,7 @@ public record StudentDTO(
 		@PositiveOrZero(message = "Age must be a positive number or zero")
 		Integer age,
 		String gender,
+		@NotNull(message = "School id is required")
 		Integer schoolId
 ) {
 
