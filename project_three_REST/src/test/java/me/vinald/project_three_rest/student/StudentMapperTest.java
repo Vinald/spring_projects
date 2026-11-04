@@ -15,8 +15,23 @@ class StudentMapperTest {
 
 	@Test
 	public void shouldMapStudentDtoToStudent() {
-		StudentDTO studentDto = new StudentDTO("John", "Doe",  "john@gmail.com", 20, "Male", 1);
+		StudentDTO studentDto = new StudentDTO(
+				"John",
+				"Doe",
+				"john@gmail.com",
+				20,
+				"Male",
+				1);
 
+		Student student = studentMapper.toStudent(studentDto);
+
+		assertEquals(studentDto.firstName(), student.getFirstName());
+		assertEquals(studentDto.lastName(), student.getLastName());
+		assertEquals(studentDto.email(), student.getEmail());
+		assertEquals(studentDto.age(), student.getAge());
+		assertEquals(studentDto.gender(), student.getGender());
+		assertNotNull(student.getSchool());
+		assertEquals(studentDto.schoolId(), student.getSchool().getId());
 	}
 
 	@Test
