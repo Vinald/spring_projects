@@ -20,12 +20,22 @@ public class Resource{
 	private String size;
 	private String url;
 
-	@OneToOne
-	@JoinColumn(name = "lecture_id")
+	@OneToOne(mappedBy = "resource")
 	private Lecture lecture;
 
 	private LocalDateTime createdAt;
 	private LocalDateTime lastModifiedAt;
 	private String createdBy;
 	private String lastModifiedBy;
+
+	@PrePersist
+	protected void onCreate() {
+		createdAt = LocalDateTime.now();
+		lastModifiedAt = createdAt;
+	}
+
+	@PreUpdate
+	protected void onUpdate() {
+		lastModifiedAt = LocalDateTime.now();
+	}
 }

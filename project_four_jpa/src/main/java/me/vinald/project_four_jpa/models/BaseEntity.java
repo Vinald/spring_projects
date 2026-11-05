@@ -18,4 +18,15 @@ public class BaseEntity {
 	private LocalDateTime lastModifiedAt;
 	private String createdBy;
 	private String lastModifiedBy;
+
+	@PrePersist
+	protected void onCreate() {
+		createdAt = LocalDateTime.now();
+		lastModifiedAt = createdAt;
+	}
+
+	@PreUpdate
+	protected void onUpdate() {
+		lastModifiedAt = LocalDateTime.now();
+	}
 }
