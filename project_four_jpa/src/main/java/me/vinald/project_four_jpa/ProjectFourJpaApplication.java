@@ -14,25 +14,4 @@ public class ProjectFourJpaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectFourJpaApplication.class, args);
 	}
-
-	@Bean
-	public CommandLineRunner commandLineRunner(
-			AuthorRepository authorRepository
-	) {
-		return args -> {
-			for (int i = 0; i < 50; i++) {
-				Faker faker = new Faker();
-				var author = Author.builder()
-						.firstName(faker.name().firstName())
-						.lastName(faker.name().lastName())
-						.email(faker.internet().emailAddress())
-						.age(faker.number().numberBetween(20, 50))
-						.createdBy("System")
-						.createdAt(java.time.LocalDateTime.now())
-						.build();
-				authorRepository.save(author);
-			}
-		};
-	}
-
 }
