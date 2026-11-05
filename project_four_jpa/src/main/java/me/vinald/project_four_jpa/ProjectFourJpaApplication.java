@@ -1,5 +1,6 @@
 package me.vinald.project_four_jpa;
 
+import com.github.javafaker.Faker;
 import me.vinald.project_four_jpa.models.Author;
 import me.vinald.project_four_jpa.repositories.AuthorRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -14,7 +15,7 @@ public class ProjectFourJpaApplication {
 		SpringApplication.run(ProjectFourJpaApplication.class, args);
 	}
 
-//	@Bean
+	@Bean
 	public CommandLineRunner commandLineRunner(
 			AuthorRepository authorRepository
 	) {
